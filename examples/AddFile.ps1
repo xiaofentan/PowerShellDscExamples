@@ -1,6 +1,6 @@
 Configuration AddFile {
     param (
-        [Parameter(Mandatory=$ture)]
+        [Parameter(Mandatory=$true)]
         [string[]]$ComputerName
     )
 
