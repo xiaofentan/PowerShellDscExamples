@@ -1,10 +1,10 @@
 Configuration AddFile {
     param (
-        [Parameter(Mandatory=$ture)]
+        [Parameter(Mandatory=$true)]
         [string[]]$ComputerName
     )
 
-    Import-DscResource -ModuleName 'PSDscResources'
+    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
 
     Node $ComputerName
     {
