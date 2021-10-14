@@ -1,11 +1,10 @@
 Configuration WebServer {
     param (
-        [Parameter(Mandatory=$ture)]
+        [Parameter(Mandatory=$true)]
         [string[]]$ComputerName
     )
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration
-    Import-DscResource -ModuleName WebAdministration
 
     Node $ComputerName
     {
@@ -22,6 +21,16 @@ Configuration WebServer {
             Ensure = "Present"
             Name = "Web-Asp-Net45"
             DependsOn = '[WindowsFeature]IIS'
+        }
+		WindowsFeature Management {
+            Ensure = "Present"
+            Name = "Web-Mgmt-Service"
+            DependsOn = '[WindowsFeature]IIS'
+        }
+		WindowsFeature ManagementConsole {
+            Ensure = "Present"
+            Name = "Web-Mgmt-Console"
+            DependsOn = '[WindowsFeature]Management'
         }
     }
 }
